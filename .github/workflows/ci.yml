@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: ["feature/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests Hello World
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v6
+      - name: Installer Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - name: Exécuter les tests
+        run: npm test
